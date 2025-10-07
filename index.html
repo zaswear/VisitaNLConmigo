@@ -95,17 +95,18 @@
         let db;
         let currentLang = 'es';
         
-        const firebaseConfig = {
-            apiKey: "AIzaSyDHdSTZ-OLqLS5-yquYetuTpvK2urKdB_Q",
-            authDomain: "visitanlconmigo.firebaseapp.com",
-            projectId: "visitanlconmigo",
-            storageBucket: "visitanlconmigo.appspot.com",
-            messagingSenderId: "288657359211",
-            appId: "1:288657359211:web:e6d596290b7d2513e38c2e"
-        };
-        
-        const app = initializeApp(firebaseConfig);
-        db = getFirestore(app);
+        // --- CONFIGURACIÓN SEGURA DE FIREBASE ---
+        // Lee la configuración desde la variable de entorno de Vercel
+        const firebaseConfigString = import.meta.env.VITE_FIREBASE_CONFIG;
+        if (!firebaseConfigString) {
+            console.error("Firebase config not found. Make sure VITE_FIREBASE_CONFIG is set in Vercel.");
+            document.body.innerHTML = '<div class="text-red-500 text-center p-10">Error de configuración: No se encontró la configuración de Firebase.</div>';
+        } else {
+            const firebaseConfig = JSON.parse(firebaseConfigString);
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            main(); // Llama a la función principal solo si la configuración es exitosa
+        }
 
         const translations = {
             es: { nav_utrecht: "Utrecht", nav_cities: "Ciudades", nav_trips: "Rutas de 1 Día", nav_info: "Info Práctica", utrecht_title: "Conoce Utrecht", utrecht_desc1: "Utrecht, el corazón de los Países Bajos, es una ciudad vibrante...", utrecht_desc2: "Desde la icónica Torre Dom...", cities_title: "Otras Ciudades para Explorar", trips_title: "Rutas de 1 Día", trips_subtitle: "Planes optimizados para aprovechar...", info_title: "Info Práctica y Curiosidades", footer_privacy: "Política de Privacidad", footer_contact: "Contacto", phrases_title: "Frases Frecuentes", curiosities_title: "Curiosidades", transport_title: "Transporte", supermarkets_title: "Supermercados" },
@@ -196,6 +197,7 @@
         }
 
         function renderAllSections() {
+            if(!db) return;
             listenAndRender('utrecht-places', 'places', p => p.city === 'Utrecht', renderPlaces);
             listenAndRender('cities-container', 'cities', () => true, renderCities);
             listenAndRender('phrases-section', 'info', i => i.category === 'phrase', renderInfo);
@@ -205,7 +207,35 @@
         }
         
         function toggleContactModal() {
-            // ... (código del modal de contacto - sin cambios)
+            const modal = document.getElementById('contact-modal');
+            const isOpen = !modal.classList.contains('hidden');
+            if (isOpen) { modal.classList.add('hidden'); modal.innerHTML = '';
+            } else {
+                modal.innerHTML = `
+                    <div class="relative w-full max-w-lg bg-gray-800 border border-gray-700 rounded-xl p-6 m-4 modal-enter" onclick="event.stopPropagation()">
+                        <button onclick="document.getElementById('contact-modal').classList.add('hidden')" class="absolute top-2 right-4 text-3xl">&times;</button>
+                        <h2 class="text-2xl font-bold text-orange-400 mb-4">Contacto</h2><div id="contact-status" class="mb-4"></div>
+                        <form id="contact-form">
+                            <input type="text" id="subject" placeholder="Asunto" class="w-full p-2 mb-4 rounded bg-gray-700" required>
+                            <textarea id="message" rows="5" placeholder="Tu mensaje..." class="w-full p-2 mb-4 rounded bg-gray-700" required></textarea>
+                            <button type="submit" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-lg">Enviar</button>
+                        </form>
+                    </div>`;
+                modal.classList.remove('hidden');
+                modal.onclick = () => modal.classList.add('hidden');
+                document.getElementById('contact-form').onsubmit = async (e) => {
+                    e.preventDefault();
+                    const btn = e.target.querySelector('button'); btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
+                    const statusDiv = document.getElementById('contact-status');
+                    try {
+                        const response = await fetch('/api/sendEmail', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ subject: document.getElementById('subject').value, message: document.getElementById('message').value }) });
+                        const result = await response.json();
+                        if (!response.ok) throw new Error(result.message);
+                        statusDiv.innerHTML = '<span class="text-green-400">¡Correo enviado con éxito!</span>';
+                        setTimeout(() => modal.classList.add('hidden'), 2000);
+                    } catch (error) { statusDiv.innerHTML = `<span class="text-red-400">Error: ${error.message}</span>`; btn.disabled = false; btn.innerHTML = 'Enviar'; }
+                };
+            }
         }
         window.toggleContactModal = toggleContactModal;
 
@@ -219,8 +249,7 @@
             const savedLang = localStorage.getItem('language') || 'es';
             updateLanguage(savedLang);
         }
-
-        main();
     </script>
 </body>
 </html>
+
