@@ -27,10 +27,10 @@
             <h1 class="text-2xl font-extrabold text-white">Holland Compass</h1>
         </div>
         <nav class="hidden md:flex items-center gap-6 text-sm font-semibold">
-            <a href="#utrecht" class="nav-link">Utrecht</a>
-            <a href="#cities" class="nav-link">Ciudades</a>
-            <a href="#trips" class="nav-link">Rutas de 1 Día</a>
-            <a href="#info" class="nav-link">Info Práctica</a>
+            <a href="#utrecht" class="nav-link active" data-translate="nav_utrecht">Utrecht</a>
+            <a href="#cities" class="nav-link" data-translate="nav_cities">Ciudades</a>
+            <a href="#trips" class="nav-link" data-translate="nav_trips">Rutas de 1 Día</a>
+            <a href="#info" class="nav-link" data-translate="nav_info">Info Práctica</a>
         </nav>
         <div class="flex gap-2">
             <img id="lang-es" src="https://flagcdn.com/es.svg" width="24" alt="Español" class="lang-btn">
@@ -42,50 +42,37 @@
 
     <main class="max-w-6xl mx-auto w-full mt-10">
         
-        <!-- SECCIÓN UTRECHT -->
-        <section id="utrecht" class="mb-16">
-            <h2 class="text-4xl font-bold text-orange-400 border-b-2 border-orange-400 pb-2 mb-6">Conoce Utrecht</h2>
+        <section id="utrecht" class="mb-16 scroll-mt-24">
+            <h2 class="text-4xl font-bold text-orange-400 border-b-2 border-orange-400 pb-2 mb-6" data-translate="utrecht_title">Conoce Utrecht</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div>
                     <img src="https://images.unsplash.com/photo-1596211445290-891d1d54d144?q=80&w=2574&auto=format&fit=crop" class="rounded-lg shadow-lg">
                 </div>
                 <div class="text-gray-300 space-y-4">
-                    <p>Utrecht, el corazón de los Países Bajos, es una ciudad vibrante llena de historia, canales únicos y una atmósfera acogedora. Es el punto de partida perfecto para explorar el resto del país.</p>
-                    <p>Desde la icónica Torre Dom hasta sus animados cafés junto al agua, Utrecht combina el encanto de una ciudad medieval con la energía de una ciudad universitaria moderna.</p>
+                    <p data-translate="utrecht_desc1">Utrecht, el corazón de los Países Bajos, es una ciudad vibrante llena de historia, canales únicos y una atmósfera acogedora. Es el punto de partida perfecto para explorar el resto del país.</p>
+                    <p data-translate="utrecht_desc2">Desde la icónica Torre Dom hasta sus animados cafés junto al agua, Utrecht combina el encanto de una ciudad medieval con la energía de una ciudad universitaria moderna.</p>
                 </div>
             </div>
-            <!-- Aquí irán los lugares específicos de Utrecht -->
             <div id="utrecht-places" class="mt-8"></div>
         </section>
 
-        <!-- SECCIÓN OTRAS CIUDADES -->
-        <section id="cities" class="mb-16">
-            <h2 class="text-4xl font-bold text-orange-400 border-b-2 border-orange-400 pb-2 mb-6">Otras Ciudades para Explorar</h2>
-            <div id="cities-container" class="space-y-12">
-                <!-- Las tarjetas de ciudades se insertarán aquí -->
-            </div>
+        <section id="cities" class="mb-16 scroll-mt-24">
+            <h2 class="text-4xl font-bold text-orange-400 border-b-2 border-orange-400 pb-2 mb-6" data-translate="cities_title">Otras Ciudades para Explorar</h2>
+            <div id="cities-container" class="space-y-12"></div>
         </section>
 
-        <!-- SECCIÓN RUTAS DE 1 DÍA -->
-        <section id="trips" class="mb-16">
-             <h2 class="text-4xl font-bold text-orange-400 border-b-2 border-orange-400 pb-2 mb-6">Rutas de 1 Día</h2>
-             <p class="text-gray-400 mb-6">Planes optimizados para aprovechar al máximo una visita de un día desde Utrecht.</p>
-             <div id="trips-container" class="space-y-8">
-                 <!-- Las rutas se insertarán aquí -->
-             </div>
+        <section id="trips" class="mb-16 scroll-mt-24">
+             <h2 class="text-4xl font-bold text-orange-400 border-b-2 border-orange-400 pb-2 mb-6" data-translate="trips_title">Rutas de 1 Día</h2>
+             <p class="text-gray-400 mb-6" data-translate="trips_subtitle">Planes optimizados para aprovechar al máximo una visita de un día desde Utrecht.</p>
+             <div id="trips-container" class="space-y-8"></div>
         </section>
 
-        <!-- SECCIÓN INFO PRÁCTICA -->
-        <section id="info" class="mb-16">
-            <h2 class="text-4xl font-bold text-orange-400 border-b-2 border-orange-400 pb-2 mb-6">Info Práctica y Curiosidades</h2>
+        <section id="info" class="mb-16 scroll-mt-24">
+            <h2 class="text-4xl font-bold text-orange-400 border-b-2 border-orange-400 pb-2 mb-6" data-translate="info_title">Info Práctica y Curiosidades</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Frases Frecuentes -->
                 <div id="phrases-section" class="bg-gray-800 p-6 rounded-lg"></div>
-                <!-- Curiosidades -->
                 <div id="curiosities-section" class="bg-gray-800 p-6 rounded-lg"></div>
-                 <!-- Información de Transporte -->
                 <div id="transport-section" class="bg-gray-800 p-6 rounded-lg"></div>
-                <!-- Información de Supermercados -->
                 <div id="supermarkets-section" class="bg-gray-800 p-6 rounded-lg"></div>
             </div>
         </section>
@@ -96,51 +83,144 @@
     <footer class="max-w-7xl mx-auto w-full mt-12 py-6 text-center text-gray-500 border-t border-gray-700 text-sm">
         <p>© 2025 Zaswear</p>
         <div class="mt-2 space-x-4">
-            <a href="#" class="hover:underline">Política de Privacidad</a>
-            <button id="contact-btn" class="hover:underline">Contacto</button>
+            <a href="#" class="hover:underline" data-translate="footer_privacy">Política de Privacidad</a>
+            <button id="contact-btn" class="hover:underline" data-translate="footer_contact">Contacto</button>
         </div>
     </footer>
 
     <script type="module">
-        // Importaciones de Firebase
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+        import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 
-        // --- CONFIGURACIÓN Y ESTADO GLOBAL ---
         let db;
         let currentLang = 'es';
         
-        const firebaseConfig = JSON.parse(import.meta.env.VITE_FIREBASE_CONFIG);
+        const firebaseConfig = {
+            apiKey: "AIzaSyDHdSTZ-OLqLS5-yquYetuTpvK2urKdB_Q",
+            authDomain: "visitanlconmigo.firebaseapp.com",
+            projectId: "visitanlconmigo",
+            storageBucket: "visitanlconmigo.appspot.com",
+            messagingSenderId: "288657359211",
+            appId: "1:288657359211:web:e6d596290b7d2513e38c2e"
+        };
+        
         const app = initializeApp(firebaseConfig);
         db = getFirestore(app);
 
-        // --- LÓGICA DE TRADUCCIÓN ---
-        const translations = { /* ... Diccionario de traducciones ... */ };
-        function updateLanguage(lang) { /* ... Lógica para cambiar idioma ... */ }
+        const translations = {
+            es: { nav_utrecht: "Utrecht", nav_cities: "Ciudades", nav_trips: "Rutas de 1 Día", nav_info: "Info Práctica", utrecht_title: "Conoce Utrecht", utrecht_desc1: "Utrecht, el corazón de los Países Bajos, es una ciudad vibrante...", utrecht_desc2: "Desde la icónica Torre Dom...", cities_title: "Otras Ciudades para Explorar", trips_title: "Rutas de 1 Día", trips_subtitle: "Planes optimizados para aprovechar...", info_title: "Info Práctica y Curiosidades", footer_privacy: "Política de Privacidad", footer_contact: "Contacto", phrases_title: "Frases Frecuentes", curiosities_title: "Curiosidades", transport_title: "Transporte", supermarkets_title: "Supermercados" },
+            en: { nav_utrecht: "Utrecht", nav_cities: "Cities", nav_trips: "1-Day Trips", nav_info: "Practical Info", utrecht_title: "Discover Utrecht", utrecht_desc1: "Utrecht, the heart of the Netherlands...", utrecht_desc2: "From the iconic Dom Tower...", cities_title: "Other Cities to Explore", trips_title: "1-Day Trips", trips_subtitle: "Optimized plans to make the most of...", info_title: "Practical Info & Curiosities", footer_privacy: "Privacy Policy", footer_contact: "Contact", phrases_title: "Common Phrases", curiosities_title: "Curiosities", transport_title: "Transport", supermarkets_title: "Supermarkets" },
+            gl: { nav_utrecht: "Utrecht", nav_cities: "Cidades", nav_trips: "Rutas de 1 Día", nav_info: "Info Práctica", utrecht_title: "Coñece Utrecht", utrecht_desc1: "Utrecht, o corazón dos Países Baixos...", utrecht_desc2: "Dende a icónica Torre Dom...", cities_title: "Outras Cidades para Explorar", trips_title: "Rutas de 1 Día", trips_subtitle: "Plans optimizados para aproveitar...", info_title: "Info Práctica e Curiosidades", footer_privacy: "Política de Privacidade", footer_contact: "Contacto", phrases_title: "Frases Frecuentes", curiosities_title: "Curiosidades", transport_title: "Transporte", supermarkets_title: "Supermercados" },
+            ca: { nav_utrecht: "Utrecht", nav_cities: "Ciutats", nav_trips: "Rutes d'1 Dia", nav_info: "Info Pràctica", utrecht_title: "Coneix Utrecht", utrecht_desc1: "Utrecht, el cor dels Països Baixos...", utrecht_desc2: "Des de la icònica Torre Dom...", cities_title: "Altres Ciutats per Explorar", trips_title: "Rutes d'1 Dia", trips_subtitle: "Plans optimitzats per aprofitar...", info_title: "Info Pràctica i Curiositats", footer_privacy: "Política de Privacitat", footer_contact: "Contacte", phrases_title: "Frases Freqüents", curiosities_title: "Curiositats", transport_title: "Transport", supermarkets_title: "Supermercats" }
+        };
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('language', lang);
+            document.documentElement.lang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`lang-${lang}`).classList.add('active');
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) el.textContent = translations[lang][key];
+            });
+            renderAllSections();
+        }
         function t(key) { return translations[currentLang]?.[key] || key; }
 
-        // --- LÓGICA DE RENDERIZADO ---
-        async function renderContent() {
-            // ... Funciones para dibujar cada sección de la página ...
+        function listenAndRender(containerId, collectionName, filterFn, renderer) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = `<div class="flex justify-center"><div class="spinner"></div></div>`;
+            
+            onSnapshot(collection(db, collectionName), (snapshot) => {
+                const items = [];
+                snapshot.forEach(doc => items.push({ id: doc.id, ...doc.data() }));
+                const filteredItems = items.filter(filterFn);
+                renderer(container, filteredItems);
+            }, (error) => {
+                container.innerHTML = `<p class="text-red-500">Error al cargar contenido.</p>`;
+                console.error(`Error loading ${collectionName}:`, error);
+            });
+        }
+
+        function renderPlaces(container, places) {
+            if (places.length === 0) { container.innerHTML = `<p class="text-gray-500 mt-4">No hay lugares añadidos todavía.</p>`; return; }
+            container.innerHTML = '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"></div>';
+            const grid = container.querySelector('div');
+            places.forEach(place => {
+                grid.innerHTML += `
+                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                        <img src="${place.imageUrl}" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="font-bold text-lg text-white">${place.name[currentLang] || place.name.es}</h4>
+                            <p class="text-sm text-gray-400 mt-1">${place.description[currentLang] || place.description.es}</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.address)}" target="_blank" class="text-orange-400 hover:underline text-sm mt-2 inline-block">Ver en Google Maps</a>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function renderCities(container, cities) {
+            if (cities.length === 0) { container.innerHTML = `<p class="text-gray-500 mt-4">No hay ciudades añadidas todavía.</p>`; return; }
+            container.innerHTML = '';
+            cities.forEach(city => {
+                container.innerHTML += `
+                    <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+                        <img src="${city.imageUrl}" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-3xl font-bold text-white">${city.name}</h3>
+                            <p class="text-gray-400 mt-2">${city.description[currentLang] || city.description.es}</p>
+                             <p class="text-sm text-orange-300 mt-4">~ ${city.travelTime} en tren desde Utrecht Centraal</p>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function renderInfo(container, items) {
+             const titleKey = container.id.replace('-section', '_title');
+             let content = `<h3 class="text-2xl font-bold text-white mb-4" data-translate="${titleKey}">${t(titleKey)}</h3>`;
+             if (items.length === 0) {
+                 content += `<p class="text-gray-500">No hay contenido todavía.</p>`;
+             } else {
+                 content += '<div class="space-y-4">';
+                 items.forEach(item => {
+                     content += `<div class="p-4 bg-gray-900 rounded-md">
+                         <p class="font-semibold text-orange-300">${item.title[currentLang] || item.title.es}</p>
+                         <p class="text-sm text-gray-400">${item.description[currentLang] || item.description.es}</p>
+                     </div>`;
+                 });
+                 content += '</div>';
+             }
+             container.innerHTML = content;
+        }
+
+        function renderAllSections() {
+            listenAndRender('utrecht-places', 'places', p => p.city === 'Utrecht', renderPlaces);
+            listenAndRender('cities-container', 'cities', () => true, renderCities);
+            listenAndRender('phrases-section', 'info', i => i.category === 'phrase', renderInfo);
+            listenAndRender('curiosities-section', 'info', i => i.category === 'curiosity', renderInfo);
+            listenAndRender('transport-section', 'info', i => i.category === 'transport', renderInfo);
+            listenAndRender('supermarkets-section', 'info', i => i.category === 'supermarket', renderInfo);
         }
         
-        function toggleContactModal() { /* ... Lógica para el modal de contacto ... */ }
+        function toggleContactModal() {
+            // ... (código del modal de contacto - sin cambios)
+        }
+        window.toggleContactModal = toggleContactModal;
 
-        // --- INICIALIZACIÓN ---
         function main() {
             document.getElementById('contact-btn').onclick = toggleContactModal;
             document.getElementById('lang-es').onclick = () => updateLanguage('es');
-            // ... etc. para otros idiomas ...
+            document.getElementById('lang-en').onclick = () => updateLanguage('en');
+            document.getElementById('lang-gl').onclick = () => updateLanguage('gl');
+            document.getElementById('lang-ca').onclick = () => updateLanguage('ca');
 
             const savedLang = localStorage.getItem('language') || 'es';
             updateLanguage(savedLang);
-            renderContent();
         }
 
         main();
-
-        // --- CÓDIGO COMPLETO DE LAS FUNCIONES (PARA EVITAR ERRORES) ---
-        // Se pegan aquí todas las funciones completas.
     </script>
 </body>
 </html>
